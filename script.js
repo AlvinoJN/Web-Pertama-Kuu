@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let users = JSON.parse(localStorage.getItem('users')) || [
         { username: "pino", password: "genteng" }, 
         { username: "rakuy", password: "uuy" }, 
+        { username: "iyyo", password: "rio" }, 
         { username: "tes", password: "tes" }
     ];
 
