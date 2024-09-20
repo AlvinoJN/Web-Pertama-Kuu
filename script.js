@@ -5,12 +5,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const errorMsg = document.getElementById("errorMsg");
     const showPasswordCheckbox = document.getElementById("show-password");
 
-    // List of users (acting as a simple database)
-    let users = [
-        { username: "pino", password: "genteng" }, // Predefined user
-        { username: "rakuy", password: "masgenteng" }, // Predefined user
-        { username: "tes", password: "tes" } // Predefined user
+    // Retrieve users from localStorage or initialize with predefined users
+    let users = JSON.parse(localStorage.getItem('users')) || [
+        { username: "pino", password: "genteng" }, 
+        { username: "rakuy", password: "uuy" }, 
+        { username: "tes", password: "tes" }
     ];
+
+    // Save users back to localStorage whenever a new user is registered
+    function saveUsers() {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
 
     // Show/Hide Password Logic
     showPasswordCheckbox.addEventListener("change", function() {
@@ -27,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Simple validation
         if (username === "" || password === "") {
             errorMsg.textContent = "Username and Password cannot be empty.";
-            errorMsg.classList.add("show"); // Show error message
+            errorMsg.classList.add("show");
             return;
         }
 
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location.href = "coba.html"; // Redirect to the next page
         } else {
             errorMsg.textContent = "Invalid Username or Password.";
-            errorMsg.classList.add("show"); // Show error message
+            errorMsg.classList.add("show");
         }
     });
 
@@ -52,8 +57,9 @@ document.addEventListener("DOMContentLoaded", function() {
             errorMsg.textContent = "Username already taken. Please choose another.";
             errorMsg.classList.add("show");
         } else {
-            // Add the new user to the users list
+            // Add the new user to the users list and save it
             users.push({ username, password });
+            saveUsers(); // Save to localStorage
             alert("Registration successful!");
             errorMsg.textContent = "";
             errorMsg.classList.remove("show");
