@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // List of users (acting as a simple database)
     let users = [
         { username: "pino", password: "genteng" }, // Predefined user
+        { username: "rakuy", password: "masgenteng" }, // Predefined user
         { username: "tes", password: "tes" } // Predefined user
     ];
 
